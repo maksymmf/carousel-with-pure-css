@@ -1,0 +1,168 @@
+@import '_vars';
+@import '_helpers';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    background-color: $pink-color;
+    overflow: hidden;
+}
+
+#radio1,
+#radio2,
+#radio3 {
+    display: none;
+}
+
+.slide-sections {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+
+    .slides {
+        background-attachment: fixed;
+        width: 100vw;
+        height: 99vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: margin-left .6s;
+
+        h1 {
+            z-index: 99;
+            display: block;
+            width: 100vw;
+            padding: 2px;
+            background-color: $pink-color;
+            font-family: $primary-font;
+            font-size: 1.9rem;
+            text-align: center;
+            color: $blue-color;
+            text-transform: uppercase;
+        }
+    }
+}
+
+#radio1:checked~.slide-sections #slide-one {
+    margin-left: 0;
+}
+
+#radio2:checked~.slide-sections #slide-two {
+    margin-left: -100vw;
+}
+
+#radio3:checked~.slide-sections #slide-three {
+    margin-left: -200vw;
+}
+
+.controls {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    width: 100%;
+    z-index: 99;
+}
+
+.controls label {
+    position: absolute;
+    display: none;
+    width: 60px;
+    height: 60px;
+}
+
+#radio1:checked~.controls .pre:nth-child(3) {
+    display: block;
+    left: 10%;
+    border-right: 12px solid $pink-color;
+    border-bottom: 12px solid $pink-color;
+    cursor: not-allowed;
+    transform: rotate(-225deg);
+    opacity: .8;
+}
+
+#radio2:checked~.controls .pre:nth-child(1),
+#radio3:checked~.controls .pre:nth-child(2) {
+    display: block;
+    left: 10%;
+    border-right: 12px solid $red-color;
+    border-bottom: 12px solid $red-color;
+    cursor: pointer;
+    transform: rotate(-225deg);
+
+    &:hover {
+        border-color: $light-red-color;
+    }
+
+    &:active {
+        border-color: $blue-color;
+    }
+}
+
+#radio3:checked~.controls .nxt:nth-child(4) {
+    display: block;
+    right: 10%;
+    border-right: 12px solid $light-red-color;
+    border-bottom: 12px solid $light-red-color;
+    cursor: not-allowed;
+    transform: rotate(-45deg);
+    opacity: .8;
+}
+
+#radio1:checked~.controls .nxt:nth-child(5),
+#radio2:checked~.controls .nxt:nth-child(6) {
+    display: block;
+    right: 10%;
+    border-right: 12px solid $red-color;
+    border-bottom: 12px solid $red-color;
+    cursor: pointer;
+    transform: rotate(-45deg);
+
+    &:hover {
+        border-color: $light-red-color;
+    }
+
+    &:active {
+        border-color: $blue-color;
+    }
+}
+
+.slider-nav {
+    position: fixed;
+    display: block;
+    width: 100%;
+    bottom: 8%;
+    text-align: center;
+
+    .crosses {
+        display: inline-block;
+        clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+        background-color: $red-color;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+        margin: 7px;
+
+        &:hover {
+            background-color: $light-red-color;
+        }
+
+        &:active {
+            background-color: $blue-color;
+        }
+    }
+}
+
+#radio1:checked~.slider-nav #cross-1,
+#radio2:checked~.slider-nav #cross-2,
+#radio3:checked~.slider-nav #cross-3 {
+    background-color: $pink-color;
+}
