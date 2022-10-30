@@ -1,2 +1,2 @@
 # carousel-with-pure-css
-carousel effect with no use of js
+carousel effect with no use of JS
